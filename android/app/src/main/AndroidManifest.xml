@@ -2,7 +2,7 @@
     <application
         android:allowBackup="true"
         android:icon="@android:drawable/ic_media_play"
-        android:label="Real Drummer"
+        android:label="Omnibeats"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="false">

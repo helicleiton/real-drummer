@@ -1,12 +1,12 @@
-# Real Drummer
+# Omnibeats
 
-Landing page analógica para o Real Drummer e drum machine web responsiva com Web Audio API.
+Landing page analógica para o Omnibeats e drum machine web responsiva com Web Audio API.
 
 ## Abrir
 
 - Landing page: abra `landing.html` no navegador.
 - Sequenciador: abra `index.html` no navegador. Em Android, o projeto nativo fica em `android/`.
-- App desktop Windows: `npm run desktop:dist` gera o instalador em `dist/windows/`.
+- App desktop Windows: `npm run desktop:dist` gera o instalador Omnibeats em `dist/windows/`.
 - Site para hospedagem estática: `npm run build:site` gera `dist/site/`, com a landing em `/` e o sequenciador em `/sequencer.html`.
 - A landing usa uma fotografia do Forward Studios, via Wikimedia Commons, sob CC BY-SA 4.0; o crédito e a licença estão no rodapé.
 

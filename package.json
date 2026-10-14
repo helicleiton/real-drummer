@@ -12,7 +12,7 @@
   },
   "build": {
     "appId": "com.realdrummer.app",
-    "productName": "Real Drummer",
+    "productName": "Omnibeats",
     "directories": {
       "output": "dist/windows"
     },
@@ -26,7 +26,7 @@
       "target": [
         "nsis"
       ],
-      "artifactName": "RealDrummer-Windows-Setup.${ext}"
+      "artifactName": "Omnibeats-Windows-Setup.${ext}"
     },
     "nsis": {
       "oneClick": false,

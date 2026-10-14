@@ -14,5 +14,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RealDrummer"
+rootProject.name = "Omnibeats"
 include(":app")

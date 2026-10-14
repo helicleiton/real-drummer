@@ -46,7 +46,7 @@ app.whenReady().then(async () => {
     minWidth: 760,
     minHeight: 540,
     backgroundColor: '#191714',
-    title: 'Real Drummer',
+    title: 'Omnibeats',
     autoHideMenuBar: true,
     webPreferences: {
       contextIsolation: true,

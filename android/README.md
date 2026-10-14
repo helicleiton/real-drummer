@@ -1,4 +1,4 @@
-# Real Drummer for Android
+# Omnibeats for Android
 
 This Android app packages the existing sequencer as a local WebView app. The HTML and CC0 drum samples are bundled in `app/src/main/assets/www`, served through `WebViewAssetLoader` on an HTTPS app origin so Web Audio and local sample fetches work without `file://` access.
 
