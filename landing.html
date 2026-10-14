@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#191714">
+  <meta name="description" content="Real Drummer: drum machine de inspiração analógica para criar grooves, controlar kits e montar viradas.">
+  <title>Real Drummer | Drum Machine</title>
+  <style>
+    :root{color-scheme:dark;--ink:#191714;--panel:#24211c;--paper:#eee4d1;--muted:#c0b49e;--brass:#d7ad68;--line:rgba(226,203,160,.24);--rust:#b95f46;--sage:#9eb18b}
+    *{box-sizing:border-box}
+    html{scroll-behavior:smooth}
+    body{margin:0;background:var(--ink);color:var(--paper);font-family:Georgia,'Times New Roman',serif}
+    a{color:inherit}
+    .mono{font-family:'Courier New',monospace;letter-spacing:.04em}
+    .nav{height:74px;padding:0 clamp(20px,5vw,76px);display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);background:#1d1a16}
+    .brand{display:flex;align-items:center;gap:13px;text-decoration:none}
+    .brand-mark{width:36px;height:36px;border:1px solid var(--brass);border-radius:50%;display:grid;place-items:center;color:var(--brass);font:18px Georgia,serif;box-shadow:inset 0 0 0 4px rgba(215,173,104,.08)}
+    .brand-name{font-size:13px;font-weight:bold;line-height:1.2;letter-spacing:.15em}
+    .brand-name small{display:block;margin-top:4px;color:var(--muted);font:9px 'Courier New',monospace;letter-spacing:.17em}
+    .nav-right{display:flex;align-items:center;gap:28px}
+    .nav-link{color:#c9bda8;font:10px 'Courier New',monospace;text-decoration:none;letter-spacing:.12em;text-transform:uppercase}
+    .nav-link:hover{color:var(--brass)}
+    .button{display:inline-flex;align-items:center;justify-content:center;gap:12px;min-height:48px;padding:0 21px;border:1px solid #e3bf7d;background:linear-gradient(145deg,#efd38f,#c08d47);color:#211b13;text-decoration:none;text-transform:uppercase;font:700 10px 'Courier New',monospace;letter-spacing:.1em;box-shadow:inset 0 1px rgba(255,255,255,.55),0 3px 0 #72552c;transition:transform .15s,filter .15s}
+    .button:hover{filter:brightness(1.08);transform:translateY(-2px)}
+    .button:active{transform:translateY(1px);box-shadow:inset 0 1px rgba(255,255,255,.55),0 1px 0 #72552c}
+    .button-arrow{font:18px Georgia,serif}
+    .hero{position:relative;min-height:min(710px,calc(100svh - 74px));display:flex;align-items:center;overflow:hidden;border-bottom:1px solid var(--line);isolation:isolate}
+    .hero::before{content:"";position:absolute;z-index:-2;inset:0;background-image:url('https://upload.wikimedia.org/wikipedia/commons/3/31/27356430_Live_Room.jpg');background-position:center 54%;background-size:cover;filter:saturate(.74) sepia(.16)}
+    .hero::after{content:"";position:absolute;z-index:-1;inset:0;background:linear-gradient(90deg,rgba(23,20,16,.97) 0%,rgba(23,20,16,.86) 35%,rgba(23,20,16,.42) 68%,rgba(23,20,16,.12) 100%),linear-gradient(0deg,rgba(20,17,14,.68),transparent 30%,rgba(15,14,12,.12))}
+    .hero-content{width:min(670px,100%);padding:90px clamp(22px,8vw,120px) 112px;animation:arrive .8s ease-out both}
+    .kicker{display:flex;align-items:center;gap:12px;margin:0 0 22px;color:var(--brass);font:10px 'Courier New',monospace;letter-spacing:.2em;text-transform:uppercase}
+    .kicker::before{content:"";height:1px;width:32px;background:var(--brass)}
+    h1{max-width:620px;margin:0;color:#f2e8d5;font-size:clamp(55px,8vw,112px);font-weight:normal;line-height:.88;letter-spacing:-.045em}
+    h1 span{display:block;color:var(--brass);font-style:italic}
+    .hero-copy{max-width:430px;margin:28px 0 32px;color:#dfd4c0;font-size:17px;line-height:1.65}
+    .hero-actions{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+    .secondary-link{color:#e5d6bb;font:10px 'Courier New',monospace;letter-spacing:.12em;text-decoration:none;text-transform:uppercase;border-bottom:1px solid rgba(229,214,187,.5);padding-bottom:5px}
+    .secondary-link:hover{color:var(--brass);border-color:var(--brass)}
+    .hero-index{position:absolute;right:clamp(20px,5vw,76px);bottom:28px;color:rgba(245,231,205,.82);font:9px 'Courier New',monospace;letter-spacing:.16em;text-transform:uppercase}
+    .hero-index span{color:var(--brass)}
+    .section{padding:86px clamp(20px,7vw,104px)}
+    .section-head{display:grid;grid-template-columns:minmax(0,1fr) minmax(240px,410px);gap:40px;align-items:end;margin-bottom:42px}
+    .section-kicker{margin:0 0 13px;color:var(--brass);font:10px 'Courier New',monospace;letter-spacing:.18em;text-transform:uppercase}
+    h2{margin:0;font-size:clamp(34px,4.5vw,58px);font-weight:normal;line-height:1.04}
+    .section-intro{margin:0;color:var(--muted);font-size:15px;line-height:1.7}
+    .rack{border:1px solid #655743;background:linear-gradient(180deg,#302a22,#211e19);box-shadow:inset 0 1px rgba(255,255,255,.1),0 12px 36px rgba(0,0,0,.28)}
+    .rack-head{height:48px;padding:0 20px;display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid #67583e;color:#e5d6bb;font:10px 'Courier New',monospace;letter-spacing:.14em}
+    .rack-led{display:inline-block;width:8px;height:8px;margin-right:9px;border-radius:50%;background:#dcaa54;box-shadow:0 0 10px rgba(220,170,84,.65)}
+    .rack-body{padding:14px 20px 20px;overflow:hidden}
+    .beat-numbers,.lane{display:grid;grid-template-columns:120px repeat(16,minmax(13px,1fr));gap:5px;min-width:640px}
+    .beat-numbers{margin-bottom:8px;color:#c6b796;font:9px 'Courier New',monospace}
+    .beat-numbers span:nth-child(4n+2){color:#f2d493}
+    .lane{align-items:center;min-height:38px;border-top:1px solid rgba(224,204,165,.12)}
+    .lane-name{color:#e5d8c1;font:10px 'Courier New',monospace;letter-spacing:.08em;text-transform:uppercase}
+    .pad{height:20px;border:1px solid #6a5b43;background:linear-gradient(145deg,#40372a,#272119);box-shadow:inset 0 1px rgba(255,255,255,.09),inset 0 -2px rgba(0,0,0,.45)}
+    .pad:nth-child(4n+2){margin-left:3px}
+    .pad.on{border-color:#f0d18a;background:linear-gradient(145deg,#f0d18a,#c49a55 64%,#8d6737);box-shadow:inset 0 1px rgba(255,255,255,.42),0 0 7px rgba(218,173,95,.17)}
+    .pad.rust{border-color:#d78a69;background:linear-gradient(145deg,#e0a27a,#bd6d50 64%,#75412e)}
+    .specs{display:grid;grid-template-columns:repeat(3,1fr);margin-top:52px;border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+    .spec{padding:24px 24px 25px 0;border-right:1px solid var(--line)}
+    .spec+.spec{padding-left:24px}.spec:last-child{border-right:0}
+    .spec strong{display:block;margin-bottom:8px;color:var(--brass);font:10px 'Courier New',monospace;letter-spacing:.14em;text-transform:uppercase}
+    .spec span{color:#d2c5ae;font-size:14px;line-height:1.5}
+    .cta-band{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:34px 0;border-bottom:1px solid var(--line)}
+    .cta-band p{margin:0;color:#e5d9c4;font-size:21px}
+    .footer{display:flex;justify-content:space-between;gap:20px;padding:22px clamp(20px,7vw,104px);color:#a89980;font:9px 'Courier New',monospace;letter-spacing:.07em}
+    .footer a{color:#c8ae7e;text-underline-offset:3px}
+    @keyframes arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
+    @media(max-width:720px){.nav{height:64px;padding-inline:18px}.nav-right{gap:12px}.nav-link{display:none}.nav .button{min-height:39px;padding:0 12px;font-size:9px}.hero{min-height:calc(100svh - 64px);align-items:end}.hero::before{background-position:57% center}.hero::after{background:linear-gradient(0deg,rgba(23,20,16,.96),rgba(23,20,16,.76) 47%,rgba(23,20,16,.13) 100%)}.hero-content{padding:0 24px 92px}.hero-copy{font-size:15px;margin:22px 0 26px}.hero-index{right:20px;bottom:20px}.section{padding:64px 20px}.section-head{grid-template-columns:1fr;gap:18px;margin-bottom:28px}.rack-body{overflow-x:auto;padding:12px}.rack-head{padding-inline:14px}.specs{grid-template-columns:1fr;margin-top:34px}.spec,.spec+.spec{padding:17px 0;border-right:0;border-bottom:1px solid var(--line)}.spec:last-child{border-bottom:0}.cta-band{align-items:flex-start;flex-direction:column}.cta-band p{font-size:18px}.footer{padding-inline:20px;flex-direction:column}}
+    @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-content{animation:none}.button{transition:none}}
+  </style>
+</head>
+<body>
+  <header class="nav">
+    <a class="brand" href="landing.html" aria-label="Real Drummer início">
+      <span class="brand-mark" aria-hidden="true">R</span>
+      <span class="brand-name">REAL DRUMMER<small>ANALOG RHYTHM WORKSTATION</small></span>
+    </a>
+    <nav class="nav-right" aria-label="Navegação principal">
+      <a class="nav-link" href="#instrumento">O instrumento</a>
+      <a class="nav-link" href="#workflow">Fluxo de trabalho</a>
+      <a class="button" href="index.html">Abrir sequenciador <span class="button-arrow" aria-hidden="true">↗</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero" aria-labelledby="hero-title">
+      <div class="hero-content">
+        <p class="kicker">Drum machine · Edição 01</p>
+        <h1 id="hero-title">Ritmo com<br><span>matéria.</span></h1>
+        <p class="hero-copy">Um channel rack tátil para compor grooves de bateria, esculpir dinâmica e encontrar a virada certa.</p>
+        <div class="hero-actions">
+          <a class="button" href="index.html">Entrar no sequenciador <span class="button-arrow" aria-hidden="true">↗</span></a>
+          <a class="secondary-link" href="#instrumento">Conhecer o instrumento</a>
+        </div>
+      </div>
+      <div class="hero-index"><span>01</span> / 16 · sala de gravação</div>
+    </section>
+
+    <section class="section" id="instrumento" aria-labelledby="instrument-title">
+      <div class="section-head">
+        <div><p class="section-kicker">O instrumento</p><h2 id="instrument-title">Cada batida,<br>no seu lugar.</h2></div>
+        <p class="section-intro">Monte o groove passo a passo. Alterne entre kits acústicos, vintage e eletrônicos, ajuste cada canal e modele a dinâmica da execução.</p>
+      </div>
+      <div class="rack" aria-label="Prévia do channel rack">
+        <div class="rack-head"><span><i class="rack-led"></i>CHANNEL RACK</span><span>4/4&nbsp;&nbsp; · &nbsp;&nbsp;112 BPM</span></div>
+        <div class="rack-body">
+          <div class="beat-numbers"><span>CANAL</span><span>1</span><span></span><span></span><span></span><span>2</span><span></span><span></span><span></span><span>3</span><span></span><span></span><span></span><span>4</span><span></span><span></span><span></span></div>
+          <div class="lane"><span class="lane-name">Kick · Bumbo</span><i class="pad on"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div>
+          <div class="lane"><span class="lane-name">Snare · Caixa</span><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad rust on"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad rust on"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i></div>
+          <div class="lane"><span class="lane-name">Closed hat</span><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i><i class="pad on"></i><i class="pad"></i></div>
+          <div class="lane"><span class="lane-name">Tom · Virada</span><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad"></i><i class="pad on"></i><i class="pad on"></i><i class="pad on"></i><i class="pad rust on"></i><i class="pad"></i></div>
+        </div>
+      </div>
+      <div class="specs" id="workflow">
+        <div class="spec"><strong>01 / Groove</strong><span>16 ou 32 passos, kits de bateria e padrões editáveis.</span></div>
+        <div class="spec"><strong>02 / Dinâmica</strong><span>Normal, acentuada e ghost note em cada batida.</span></div>
+        <div class="spec"><strong>03 / Viradas</strong><span>Escolha uma virada e decida se ela volta a cada loop.</span></div>
+      </div>
+      <div class="cta-band"><p>Abra o rack. Comece pelo pulso.</p><a class="button" href="index.html">Abrir Real Drummer <span class="button-arrow" aria-hidden="true">↗</span></a></div>
+    </section>
+  </main>
+
+  <footer class="footer"><span>REAL DRUMMER · 2026</span><span>Foto: Forward Studios · <a href="https://commons.wikimedia.org/wiki/File:27356430_Live_Room.jpg" target="_blank" rel="noreferrer">Wikimedia Commons, CC BY-SA 4.0</a></span></footer>
+</body>
+</html>
