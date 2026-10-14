@@ -64,10 +64,23 @@
     .spec span{color:#d2c5ae;font-size:14px;line-height:1.5}
     .cta-band{display:flex;align-items:center;justify-content:space-between;gap:28px;padding:34px 0;border-bottom:1px solid var(--line)}
     .cta-band p{margin:0;color:#e5d9c4;font-size:21px}
+    .downloads{display:grid;grid-template-columns:minmax(0,1fr) minmax(480px,650px);gap:42px;align-items:center;padding:56px 0;border-bottom:1px solid var(--line)}
+    .downloads .section-intro{max-width:390px;margin-top:16px}
+    .download-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px}
+    .download-card{position:relative;min-height:150px;display:flex;flex-direction:column;align-items:flex-start;justify-content:center;gap:8px;padding:20px;border:1px solid #655743;background:linear-gradient(155deg,#332b21,#211d18);text-decoration:none;box-shadow:inset 0 1px rgba(255,255,255,.08),0 4px 14px rgba(0,0,0,.2);transition:transform .15s,border-color .15s}
+    .download-card:hover{transform:translateY(-2px);border-color:var(--brass)}
+    .download-card[aria-disabled="true"]{opacity:.62;cursor:not-allowed}
+    .download-card[aria-disabled="true"]:hover{transform:none;border-color:#655743}
+    .download-platform{color:var(--brass);font:10px 'Courier New',monospace;letter-spacing:.16em}
+    .download-card strong{font:normal 21px Georgia,serif;color:var(--paper)}
+    .download-detail,.download-status{color:var(--muted);font:10px 'Courier New',monospace;line-height:1.5}
+    .download-arrow{position:absolute;right:16px;top:14px;color:var(--brass);font:19px Georgia,serif}
+    .download-status{grid-column:1/-1;margin:3px 0 0}
     .footer{display:flex;justify-content:space-between;gap:20px;padding:22px clamp(20px,7vw,104px);color:#a89980;font:9px 'Courier New',monospace;letter-spacing:.07em}
     .footer a{color:#c8ae7e;text-underline-offset:3px}
     @keyframes arrive{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:translateY(0)}}
-    @media(max-width:720px){.nav{height:64px;padding-inline:18px}.nav-right{gap:12px}.nav-link{display:none}.nav .button{min-height:39px;padding:0 12px;font-size:9px}.hero{min-height:calc(100svh - 64px);align-items:end}.hero::before{background-position:57% center}.hero::after{background:linear-gradient(0deg,rgba(23,20,16,.96),rgba(23,20,16,.76) 47%,rgba(23,20,16,.13) 100%)}.hero-content{padding:0 24px 92px}.hero-copy{font-size:15px;margin:22px 0 26px}.hero-index{right:20px;bottom:20px}.section{padding:64px 20px}.section-head{grid-template-columns:1fr;gap:18px;margin-bottom:28px}.rack-body{overflow-x:auto;padding:12px}.rack-head{padding-inline:14px}.specs{grid-template-columns:1fr;margin-top:34px}.spec,.spec+.spec{padding:17px 0;border-right:0;border-bottom:1px solid var(--line)}.spec:last-child{border-bottom:0}.cta-band{align-items:flex-start;flex-direction:column}.cta-band p{font-size:18px}.footer{padding-inline:20px;flex-direction:column}}
+    @media(max-width:900px){.downloads{grid-template-columns:1fr;gap:25px}.download-actions{grid-template-columns:repeat(3,minmax(0,1fr))}}
+    @media(max-width:720px){.nav{height:64px;padding-inline:18px}.nav-right{gap:12px}.nav-link{display:none}.nav .button{min-height:39px;padding:0 12px;font-size:9px}.hero{min-height:calc(100svh - 64px);align-items:end}.hero::before{background-position:57% center}.hero::after{background:linear-gradient(0deg,rgba(23,20,16,.96),rgba(23,20,16,.76) 47%,rgba(23,20,16,.13) 100%)}.hero-content{padding:0 24px 92px}.hero-copy{font-size:15px;margin:22px 0 26px}.hero-index{right:20px;bottom:20px}.section{padding:64px 20px}.section-head{grid-template-columns:1fr;gap:18px;margin-bottom:28px}.rack-body{overflow-x:auto;padding:12px}.rack-head{padding-inline:14px}.specs{grid-template-columns:1fr;margin-top:34px}.spec,.spec+.spec{padding:17px 0;border-right:0;border-bottom:1px solid var(--line)}.spec:last-child{border-bottom:0}.downloads{grid-template-columns:1fr;gap:25px;padding:34px 0}.download-actions{grid-template-columns:1fr}.download-card{min-height:118px;padding:17px}.download-card strong{font-size:20px}.download-detail{font-size:10px}.cta-band{align-items:flex-start;flex-direction:column}.cta-band p{font-size:18px}.footer{padding-inline:20px;flex-direction:column}}
     @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}.hero-content{animation:none}.button{transition:none}}
   </style>
 </head>
@@ -80,7 +93,8 @@
     <nav class="nav-right" aria-label="Navegação principal">
       <a class="nav-link" href="#instrumento">O instrumento</a>
       <a class="nav-link" href="#workflow">Fluxo de trabalho</a>
-      <a class="button" href="index.html">Abrir sequenciador <span class="button-arrow" aria-hidden="true">↗</span></a>
+      <a class="nav-link" href="#downloads">Downloads</a>
+      <a class="button" href="sequencer.html">Usar na web <span class="button-arrow" aria-hidden="true">↗</span></a>
     </nav>
   </header>
 
@@ -91,7 +105,7 @@
         <h1 id="hero-title">Ritmo com<br><span>matéria.</span></h1>
         <p class="hero-copy">Um channel rack tátil para compor grooves de bateria, esculpir dinâmica e encontrar a virada certa.</p>
         <div class="hero-actions">
-          <a class="button" href="index.html">Entrar no sequenciador <span class="button-arrow" aria-hidden="true">↗</span></a>
+          <a class="button" href="sequencer.html">Usar na web <span class="button-arrow" aria-hidden="true">↗</span></a>
           <a class="secondary-link" href="#instrumento">Conhecer o instrumento</a>
         </div>
       </div>
@@ -118,10 +132,20 @@
         <div class="spec"><strong>02 / Dinâmica</strong><span>Normal, acentuada e ghost note em cada batida.</span></div>
         <div class="spec"><strong>03 / Viradas</strong><span>Escolha uma virada e decida se ela volta a cada loop.</span></div>
       </div>
-      <div class="cta-band"><p>Abra o rack. Comece pelo pulso.</p><a class="button" href="index.html">Abrir Real Drummer <span class="button-arrow" aria-hidden="true">↗</span></a></div>
+      <div class="downloads" id="downloads" aria-labelledby="downloads-title">
+        <div><p class="section-kicker">Escolha sua plataforma</p><h2 id="downloads-title">Leve o ritmo<br>com você.</h2><p class="section-intro">Use direto no navegador ou instale o app no Android e Windows.</p></div>
+        <div class="download-actions">
+          <a class="download-card" href="sequencer.html"><span class="download-platform">WEB</span><strong>Usar na web</strong><span class="download-detail">Abre no navegador · sem instalação</span><span class="download-arrow" aria-hidden="true">↗</span></a>
+          <a class="download-card" data-release="RealDrummer-Android.apk" href="#downloads" aria-disabled="true"><span class="download-platform">ANDROID</span><strong>Baixar APK</strong><span class="download-detail">Android 8.0 ou superior · APK</span><span class="download-arrow" aria-hidden="true">↓</span></a>
+          <a class="download-card" data-release="RealDrummer-Windows-Setup.exe" href="#downloads" aria-disabled="true"><span class="download-platform">WINDOWS</span><strong>Baixar instalador</strong><span class="download-detail">Windows 10/11 · 64-bit</span><span class="download-arrow" aria-hidden="true">↓</span></a>
+          <p class="download-status" id="downloadStatus">Aponte este site para o repositório GitHub do Real Drummer para ativar os downloads.</p>
+        </div>
+      </div>
+      <div class="cta-band"><p>Abra o rack. Comece pelo pulso.</p><a class="button" href="sequencer.html">Abrir Real Drummer <span class="button-arrow" aria-hidden="true">↗</span></a></div>
     </section>
   </main>
 
   <footer class="footer"><span>REAL DRUMMER · 2026</span><span>Foto: Forward Studios · <a href="https://commons.wikimedia.org/wiki/File:27356430_Live_Room.jpg" target="_blank" rel="noreferrer">Wikimedia Commons, CC BY-SA 4.0</a></span></footer>
+  <script src="download-links.js"></script>
 </body>
 </html>

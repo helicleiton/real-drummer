@@ -1,11 +1,46 @@
 {
-  "name": "ritmo-studio",
+  "name": "real-drummer",
+  "version": "1.0.0",
+  "description": "Analogue-inspired drum machine and step sequencer",
+  "author": "Helicleiton <helicleiton@gmail.com>",
   "private": true,
+  "main": "electron/main.cjs",
   "scripts": {
-    "build:css": "tailwindcss -i ./tailwind.input.css -o ./tailwind.css --minify"
+    "build:css": "tailwindcss -i ./tailwind.input.css -o ./tailwind.css --minify",
+    "build:site": "node scripts/build-site.mjs",
+    "desktop:dist": "electron-builder --win nsis"
+  },
+  "build": {
+    "appId": "com.realdrummer.app",
+    "productName": "Real Drummer",
+    "directories": {
+      "output": "dist/windows"
+    },
+    "files": [
+      "electron/**/*",
+      "index.html",
+      "tailwind.css",
+      "samples/**/*"
+    ],
+    "win": {
+      "target": [
+        "nsis"
+      ],
+      "artifactName": "RealDrummer-Windows-Setup.${ext}"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true
+    }
   },
   "devDependencies": {
     "@tailwindcss/cli": "^4.1.17",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.1.17",
+    "electron": "^38.2.0",
+    "electron-builder": "^26.0.12"
+  },
+  "allowScripts": {
+    "electron@38.8.6": true,
+    "electron-winstaller@5.4.0": true
   }
 }
